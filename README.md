@@ -1,4 +1,4 @@
-# CS336 Assignments (Self-Study) - by rfree2006
+# CS336 Assignments (Self-Study) - by refree2006
 
 > 自学 Stanford CS336：Large Language Models 的作业与笔记合集  
 > Self-study repo for Stanford CS336 (Spring 2025).
