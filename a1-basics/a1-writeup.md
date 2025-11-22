@@ -174,6 +174,7 @@ UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe4 in position 0: unexpect
     For "你好" / emoji characters that require a multi-byte UTF-8 sequence,"decode_utf8_bytes_to_str_ok" gets the correct string; "decode_utf8_bytes_to_str_wrong" either reports an error or becomes the result of confusion.
 
 **Answer:**
+
 Error examples:
     s_non = "你好"/"🙂"/"é"
 
@@ -208,12 +209,15 @@ for b in candidates:
     testing: b'\xff\xff'
     UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
 ```
-**Explanation:**
-    *UTF-8 define:*
+**Answer:**
+
+Error examples: bytes([0xC3, 0x28]).
+
+Reason: 
+*UTF-8 define:*
     The first byte of the two-byte character should be 110xxxxx ,
     The second byte must be 10xxxxxx;
     *UTF-8 编码规则：*
     两字节字符首字节应是 110xxxxx,
     第二个字节必须是 10xxxxxx；
-
-**Answer:**
+    
