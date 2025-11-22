@@ -172,6 +172,7 @@ UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe4 in position 0: unexpect
 **Explanation:**
     For "hello", both output is the same (because ASCII is single byte in UTF-8);
     For "你好" / emoji characters that require a multi-byte UTF-8 sequence,"decode_utf8_bytes_to_str_ok" gets the correct string; "decode_utf8_bytes_to_str_wrong" either reports an error or becomes the result of confusion.
+    
 **Answer:**
     *Error examples:*
         s_non = "你好"/"🙂"/"é"
