@@ -174,10 +174,10 @@ UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe4 in position 0: unexpect
     For "你好" / emoji characters that require a multi-byte UTF-8 sequence,"decode_utf8_bytes_to_str_ok" gets the correct string; "decode_utf8_bytes_to_str_wrong" either reports an error or becomes the result of confusion.
 
 **Answer:**
-    *Error examples:*
-        s_non = "你好"/"🙂"/"é"
-        
-    *Reason:*
+Error examples:
+    s_non = "你好"/"🙂"/"é"
+
+Reason:
     This function decodes each individual byte as a full UTF-8 character, and the correct approach should be to decode the entire byte string together in UTF-8. When multi-byte characters are taken apart, errors occur.
 
     这个函数把每个 单独的字节 当成一个完整的 UTF-8 字符去解码，而正确的做法应该是把整个字节串一起按 UTF-8 解码。多字节字符被拆开，就会出错。
