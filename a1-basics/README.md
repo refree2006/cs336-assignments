@@ -18,12 +18,14 @@
 - `notes-a1-cn.md`：中文学习笔记与踩坑记录
 - `notes-a1-en.md`：英文简要总结
 - `exp/`：与 A1 相关的实验脚本和日志（如训练 TinyStories/OWT 的脚本）
+- `a1-writeup.md`：unicode1 / unicode2 / tokenizer_experiments ...
 
 ```text
 a1-basics/
 ├── README.md
 ├── notes-a1-cn.md
 ├── notes-a1-en.md   (optional)
+├── a1-writeup.md
 └── exp/
     ├── train_tinystories.py (plan)
     ├── train_owt_for_lb.py  (plan)
