@@ -33,7 +33,7 @@
 
 - CS336 Assignment 1 官方仓库：<https://github.com/stanford-cs336/assignment1-basics>
 - Assignment 1 leaderboard：<https://github.com/stanford-cs336/assignment1-basics-leaderboard>
-- 我的 A1 代码本地路径（仅说明）：`../assignment1-basics/`（不在本仓库内）
+- 我的 A1 代码本地路径：`../assignment1-basics/`
 
 ---
 
