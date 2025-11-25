@@ -1,6 +1,7 @@
 # CS336 Assignment 1 Writeup (Self-study)
 ## rfree2006
 
+---
 ## 2.1 The Unicode Standard
 
 ### Problem (unicode1): Understanding Unicode (1 point)
@@ -67,6 +68,8 @@ print("4. len:", len("this is a test" + c + "string"))
     When inserted into a string it becomes an invisible character between the surrounding text: the printed string looks normal , but repr shows \x00 and the length increases by one.
 
     当它出现在字符串中时，会作为中间的一个不可见字符存在，打印出来的文本看起来正常，但 repr 会显示 \x00，而且字符串长度会多 1。
+
+---
 
 ## 2.2 Unicode Encodings
 
@@ -217,6 +220,115 @@ Reason:
 *UTF-8 define:*
     The first byte of the two-byte character should be 110xxxxx ,
     The second byte must be 10xxxxxx;
+    
     *UTF-8 编码规则：*
     两字节字符首字节应是 110xxxxx,
     第二个字节必须是 10xxxxxx；
+
+---
+
+## 2.4 BPE Tokenizer Training
+
+### Example (bpe_example): BPE training example
+You can find a simple code implementation of the experiment under this path： `cs336-assignments/a1-basics/exp/bpe_example.py`
+你可以找到实验的简易代码实现在该路径下：
+`cs336-assignments/a1-basics/exp/bpe_example.py`
+
+```
+python a1-basics/exp/bpe_example.py
+
+>>>
+word_counts: Counter({'low': 5, 'newest': 5, 'widest': 3, 'lower': 2, 'and': 1, 'the': 1, 'vocabulary': 1, 'has': 1, 'a': 1, 'special': 1, 'token': 1, '<endoftext>.': 1})
+word_tokens:
+  low -> (b'l', b'o', b'w')
+  lower -> (b'l', b'o', b'w', b'e', b'r')
+  widest -> (b'w', b'i', b'd', b'e', b's', b't')
+  newest -> (b'n', b'e', b'w', b'e', b's', b't')
+  and -> (b'a', b'n', b'd')
+  the -> (b't', b'h', b'e')
+  vocabulary -> (b'v', b'o', b'c', b'a', b'b', b'u', b'l', b'a', b'r', b'y')
+  has -> (b'h', b'a', b's')
+  a -> (b'a',)
+  special -> (b's', b'p', b'e', b'c', b'i', b'a', b'l')
+  token -> (b't', b'o', b'k', b'e', b'n')
+  <endoftext>. -> (b'<', b'e', b'n', b'd', b'o', b'f', b't', b'e', b'x', b't', b'>', b'.')
+
+pair_counts:
+ (<, e) -> 1
+ (>, .) -> 1
+ (a, b) -> 1
+ (a, l) -> 1
+ (a, n) -> 1
+ (a, r) -> 1
+ (a, s) -> 1
+ (b, u) -> 1
+ (c, a) -> 1
+ (c, i) -> 1
+ (d, e) -> 3
+ (d, o) -> 1
+ (e, c) -> 1
+ (e, n) -> 2
+ (e, r) -> 2
+ (e, s) -> 8
+ (e, w) -> 5
+ (e, x) -> 1
+ (f, t) -> 1
+ (h, a) -> 1
+ (h, e) -> 1
+ (i, a) -> 1
+ (i, d) -> 3
+ (k, e) -> 1
+ (l, a) -> 1
+ (l, o) -> 7
+ (n, d) -> 2
+ (n, e) -> 5
+ (o, c) -> 1
+ (o, f) -> 1
+ (o, k) -> 1
+ (o, w) -> 7
+ (p, e) -> 1
+ (r, y) -> 1
+ (s, p) -> 1
+ (s, t) -> 8
+ (t, >) -> 1
+ (t, e) -> 1
+ (t, h) -> 1
+ (t, o) -> 1
+ (u, l) -> 1
+ (v, o) -> 1
+ (w, e) -> 7
+ (w, i) -> 3
+ (x, t) -> 1
+
+Best pair to merge: (b's', b't') freq: 8
+  as chars: s t
+
+newest tokens before: (b'n', b'e', b'w', b'e', b's', b't')
+newest tokens after merge 's','t': (b'n', b'e', b'w', b'e', b'st')
+
+Merges sequence:
+  s t
+  e st
+  o w
+  l ow
+  w est
+  n e
+
+Final tokens per word:
+  low -> ['low']
+  lower -> ['low', 'e', 'r']
+  widest -> ['w', 'i', 'd', 'est']
+  newest -> ['ne', 'west']
+  and -> ['a', 'n', 'd']
+  the -> ['t', 'h', 'e']
+  vocabulary -> ['v', 'o', 'c', 'a', 'b', 'u', 'l', 'a', 'r', 'y']
+  has -> ['h', 'a', 's']
+  a -> ['a']
+  special -> ['s', 'p', 'e', 'c', 'i', 'a', 'l']
+  token -> ['t', 'o', 'k', 'e', 'n']
+  <endoftext>. -> ['<', 'e', 'n', 'd', 'o', 'f', 't', 'e', 'x', 't', '>', '.']
+
+Tokenization of 'newest': ['ne', 'west']
+```
+
+---
