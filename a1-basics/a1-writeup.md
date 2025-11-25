@@ -234,7 +234,6 @@ You can find a simple code implementation of the experiment under this path：
 
 你可以找到实验的简易代码实现在该路径下：
 `cs336-assignments/a1-basics/exp/bpe_example.py`
-你可以找到实验的简易代码实现在该路径下：
 
 ```
 # The relevant results are as follows：
